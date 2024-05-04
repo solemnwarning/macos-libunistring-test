@@ -9,7 +9,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [macos-14-large, macos-14, macos-13, macos-13-xlarge, macos-12, macos-11]
+        os: [macos-14, macos-13, macos-12, macos-11]
 
     name: Build & Test (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
