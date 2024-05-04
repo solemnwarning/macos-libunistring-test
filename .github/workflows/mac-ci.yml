@@ -35,5 +35,5 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: test-suite-${{ matrix.os }}.log
-        path: tests/test-suite.log
+        path: libunistring-1.2/tests/test-suite.log
         if-no-files-found: error
