@@ -1,0 +1,30 @@
+name: macOS CI build
+
+on:
+  push:
+    branches:
+      - "*"
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [macos-14-large, macos-14, macos-13, macos-13-xlarge, macos-12, macos-11]
+
+    name: Build & Test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - name: Build & Test
+      run: |
+          uname -a
+
+          wget https://ftp.gnu.org/gnu/libunistring/libunistring-1.2.tar.gz
+          tar -xf libunistring-1.2.tar.gz
+
+          cd libunistring-1.2/
+
+          ./configure
+
+          make -j$(sysctl -n hw.logicalcpu)
+          make -j$(sysctl -n hw.logicalcpu) check
