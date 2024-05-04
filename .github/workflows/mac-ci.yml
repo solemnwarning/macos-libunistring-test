@@ -29,3 +29,11 @@ jobs:
 
           make -j$(sysctl -n hw.logicalcpu)
           make -j$(sysctl -n hw.logicalcpu) check
+
+    - name: Store test-suite.log
+      if: success() || failure()
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-suite-${{ matrix.os }}.log
+        path: tests/test-suite.log
+        if-no-files-found: error
